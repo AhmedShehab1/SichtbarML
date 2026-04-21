@@ -34,7 +34,11 @@ export function ControlPanel({ params, state, onChange, onReset }) {
               <select
                 id={`control-${key}`}
                 value={String(currentValue)}
-                onChange={(event) => onChange(key, Number(event.target.value))}
+                onChange={(event) => {
+                  const index = event.target.selectedIndex
+                  const selectedOption = config.options[index]
+                  onChange(key, selectedOption)
+                }}
               >
                 {config.options.map((option) => (
                   <option key={String(option)} value={String(option)}>
